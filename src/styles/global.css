@@ -1,0 +1,146 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-Thin.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-ThinItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-BookItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-Demi.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-DemiItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-Black.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-BlackItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-Ultra.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Industry';
+  src: url('../assets/fonts/IndustryTest-UltraItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+
+
+@theme {
+    --color-pale-turquoise: #C2F2ED;
+    --color-cornflower-blue: #5EADF2;
+    --color-feathersoft-blue: #A0AEC0;
+    --color-pale-aqua: #C5CDD9;
+    --font-sans: "Inter";
+}
+
+:root {
+    background: #0D1117;
+    color: var(--color-feathersoft-blue)
+}

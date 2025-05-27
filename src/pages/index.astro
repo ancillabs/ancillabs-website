@@ -1,8 +1,15 @@
 ---
-
+import "./src/styles/global.css";
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Solutions from '../components/Solutions.astro';
+import WhoWeAre from '../components/WhoWeAre.astro';
+import WhyUs from '../components/WhyUs.astro';
+import CTA from '../components/CTA.astro';
 ---
 
-<html lang="en">
+<!-- <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -11,6 +18,15 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<h1>Astro test</h1>
+		<h2>... tezst</h2>
 	</body>
-</html>
+</html> -->
+<Layout>
+  <Nav />
+  <Hero />
+  <Solutions />
+  <WhoWeAre />
+  <WhyUs />
+  <CTA />
+</Layout>

@@ -1,0 +1,44 @@
+---
+// src/components/Hero.astro
+
+import LetterGlitch from "./LetterGlitch.tsx";
+---
+
+<section
+  id="hero"
+  class="min-h-screen flex flex-col justify-center items-center text-center px-4"
+>
+  <!-- <div>
+    <LetterGlitch
+      client:load
+      glitchColors={["#5e4491", "#A476FF", "#241a38"]}
+      glitchSpeed={33}
+      centerVignette={false}
+      outerVignette={true}
+      smooth={true}
+    />
+  </div> -->
+  <h1
+    class="text-4xl md:text-6xl mb-4 text-cornflower-blue font-[Industry] font-normal"
+  >
+    Launch Smarter.
+  </h1>
+  <h1
+    class="text-4xl md:text-6xl text-cornflower-blue font-[Industry] font-normal mb-6"
+  >
+    Scale Faster.
+  </h1>
+  <p class="text-lg md:text-xl max-w-2xl mb-6 font-light">
+    We empower starting entrepreneurs with rapid MVP development, automated
+    cloud infrastructure, and practical AI solutions.
+  </p>
+  <p class="text-lg md:text-xl max-w-2xl mb-6 italic font-light">
+    Built for efficiency from day one.
+  </p>
+  <a
+    href="#consult"
+    class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+  >
+    Book Your Consultation Now
+  </a>
+</section>
