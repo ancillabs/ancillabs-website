@@ -1,0 +1,131 @@
+---
+// src/components/Contact.astro
+import Grid from "../Grid.tsx";
+---
+
+<section id="contact" class="py-20">
+  <div class="max-w-6xl
+      mx-auto
+      px-8">
+    <h2 class="text-4xl font-normal font-[Industry] text-pale-turquoise mb-12">
+      > Ready to Put Your Startup on Autopilot_
+    </h2>
+
+    <div class="mb-12 space-y-6 text-lg">
+      <p>
+        Stop letting manual processes dictate your startup's pace. Let's explore
+        how automation and Ancillabs' expertise can transform your
+        business operations, save you critical time, and unlock new levels of
+        efficiency. Schedule your free automation consultation today.
+      </p>
+    </div>
+    <div class="relative mx-auto my-10 rounded-xs shadow-sm p-5">
+      <Grid
+        client:load
+        squareSize={30}
+        borderColor="rgba(194, 242, 237, 0.3)"
+        hoverFillColor="rgba(194, 242, 237, 0.9)"
+        borderWidth={1}
+        isBackground={true}
+        opacity={0.15}
+      />
+      <form
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        id="form"
+        class="relative z-10"
+      >
+        <input
+          type="hidden"
+          name="access_key"
+          value="f804dc7a-d78a-426e-8e51-a0264667e7bc"
+        />
+        <input
+          type="hidden"
+          name="subject"
+          value="New Submission from Web3Forms"
+        />
+        <input type="checkbox" name="botcheck" id="" style="display: none;" />
+        <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
+
+        <script>
+          const form = document.getElementById(
+            "form"
+          ) as HTMLFormElement | null;
+          if (form) {
+            form.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                  method: "POST",
+                  body: formData,
+                });
+                const data = await response.json();
+                if (data.success) {
+                  alert(
+                    "Thank you for your submission! We will contact you soon."
+                  );
+                  form.reset();
+                } else {
+                  throw new Error("Form submission failed");
+                }
+              } catch (error) {
+                alert(
+                  "There was an error submitting your form. Please try again."
+                );
+              }
+            });
+          }
+        </script>
+
+        <div class="mb-6">
+          <label for="name" class="block mb-2 text-sm">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="John Doe"
+            required
+            class="w-full px-3 py-2 border border-slate-600 rounded-xs focus:outline-none focus:shadow-[0_0_10px_rgba(34,211,238,0.3)] focus:border-pale-turquoise text-pale-aqua"
+          />
+        </div>
+        <div class="mb-6">
+          <label for="email" class="block mb-2 text-sm">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="you@company.com"
+            required
+            class="w-full px-3 py-2 border border-slate-600 rounded-xs focus:outline-none focus:shadow-[0_0_10px_rgba(34,211,238,0.3)] focus:border-pale-turquoise text-pale-aqua"
+          />
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="block mb-2 text-sm">Project Brief</label>
+
+          <textarea
+            rows="5"
+            name="message"
+            id="message"
+            placeholder="Tell us about your startup, current challenges, and what you're looking to achieve..."
+            class="w-full px-3 py-2 border border-slate-600 rounded-xs focus:outline-none focus:shadow-[0_0_10px_rgba(34,211,238,0.3)] focus:border-pale-turquoise text-pale-aqua"
+            required></textarea>
+        </div>
+        <div id="submitBtn" class="mb-6 text-center">
+          <button
+            type="submit"
+            class="w-xs px-2 py-3 text-[#0D1117] font-semibold bg-cornflower-blue rounded-xs focus:outline-none"
+          >
+            Discuss Your Automation Needs
+          </button>
+        </div>
+        <!-- <div class="h-captcha" data-captcha="true"></div> -->
+        <p class="text-base text-center text-[#0D1117]" id="result"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="https://web3forms.com/client/script.js" async defer></script>
