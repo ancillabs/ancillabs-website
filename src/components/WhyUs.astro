@@ -1,14 +1,64 @@
 ---
 // src/components/WhyUs.astro
+import ScrollVelocity from "./ScrollVelocity";
 ---
-<section class="py-5 px-4 text-center">
-  <h2 class="text-3xl font-normal font-[Industry] text-pale-turquoise mb-6">Why Us?_</h2>
-  <ul class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-    <li><strong>Integrated Expertise:</strong> End-to-end cloud & devops solutions.</li>
-    <li><strong>Automation First Mindset:</strong> Scripts & CI/CD pipelines everywhere.</li>
-    <li><strong>Startup-Centric Solutions:</strong> Tailored for MVP speed & budget.</n></li>
-    <li><strong>Future-Proof Foundations:</strong> Scalable, secure, maintainable.</li>
-    <li><strong>Korea Market Focus:</strong> Deep local expertise & networks.</li>
-    <li><strong>Founder-to-Founder Empathy:</strong> We’ve been in your shoes.</li>
-  </ul>
+
+<section id="why-us" class="py-5">
+  <ScrollVelocity
+    client:load
+    texts={[
+      "Integrated Expertise  ·  Automation-First Mindset  ·  Startup-Centric Solutions  ·  Future-Proof Foundations  ·  Founder-to-Founder Empathy  ·  ",
+      // "Startup-Centric Solutions",
+      // "Future-Proof Foundations",
+      // "Founder-to-Founder Empathy",
+    ]}
+    velocity={150}
+    className="custom-scroll-text"
+  />
+  <!-- <div class="max-w-6xl mx-auto px-8 text-lg">
+    <h2 class="text-4xl font-normal font-[Industry] text-pale-turquoise mb-12">
+      > Why Us_
+    </h2>
+    <div class="mb-4">
+      <div class="mb-2">
+        <strong>Integrated Expertise</strong>
+      </div>
+      <div>Seamless fusion of Development, DevOps, and AI strategy.</div>
+    </div>
+
+    <div class="mb-4 flex flex-col items-end">
+      <div class="mb-2">
+        <strong>Automation-First Mindset</strong>
+      </div>
+      <div>Efficiency is built-in, not an afterthought.</div>
+    </div>
+
+    <div class="mb-4">
+      <div class="mb-2">
+        <strong>Startup-Centric Solutions</strong>
+      </div>
+      <div>Tailored for early-stage realities, budgets, and speed.</div>
+    </div>
+
+    <div class="mb-4 flex flex-col items-end">
+      <div class="mb-2">
+        <strong>Future-Proof Foundations</strong>
+      </div>
+      <div>We build MVPs designed to scale.</div>
+    </div>
+
+    <div class="mb-4">
+      <div class="mb-2">
+        <strong>Korea Market Focus</strong>
+      </div>
+      <div>Understanding the local landscape to support your growth.</div>
+    </div>
+
+    <div class="mb-4 flex flex-col items-end">
+      <div class="mb-2">
+        <strong>Founder-to-Founder Empathy</strong>
+      </div>
+      <div>We're invested in your journey and success.</div>
+    </div>
+  </div> -->
 </section>

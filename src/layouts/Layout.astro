@@ -1,7 +1,11 @@
 ---
 // src/layouts/Layout.astro
+import FloatingButton from "../components/FloatingButton.astro";
+
+import Magnet from "../components/Magnet";
 ---
-<html lang="en"  class="bg-black scroll-smooth">
+
+<html lang="en" class="bg-black scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,5 +13,8 @@
   </head>
   <body class="font-sans antialiased">
     <slot />
+    <!-- <Magnet padding={50} disabled={false} magnetStrength={50}> -->
+      <FloatingButton />
+    <!-- </Magnet> -->
   </body>
 </html>

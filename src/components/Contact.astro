@@ -1,9 +1,133 @@
 ---
-// src/components/FooterCTA.astro
+// src/components/Contact.astro
+import DotGrid from "./DotGrid.tsx";
+import Grid from "./Grid.tsx";
 ---
-<section id="consult" class="py-16 text-center px-4">
-  <h2 class="text-2xl font-bold mb-4">Let’s Build_</h2>
-  <a href="mailto:contact@ancillabs.com" class="underline hover:text-gray-200">
-    contact@ancillabs.com
-  </a>
+
+<section id="contact" class="py-20">
+  <div class="max-w-6xl
+      mx-auto
+      px-8">
+    <h2 class="text-4xl font-normal font-[Industry] text-pale-turquoise mb-12">
+      > Don't Let Tech Bottlenecks Stall Your Dream_
+    </h2>
+
+    <div class="mb-12 space-y-6 text-lg">
+      <p>
+        Ancillabs is your dedicated partner for launching and scaling your
+        startup with confidence. We provide the expert MVP development, robust
+        automation, practical AI integration solutions you need to succeed,
+        without the complexity.
+      </p>
+
+      <p>
+        Stop wrestling with tech and start building momentum. Your first step is
+        a free, no-obligation strategy call where we'll discuss your specific
+        challenges and outline a clear path forward.
+      </p>
+    </div>
+    <div class="relative mx-auto my-10 rounded-xs shadow-sm p-5">
+      <Grid
+        client:load
+        squareSize={30}
+        borderColor="rgba(194, 242, 237, 0.3)"
+        hoverFillColor="rgba(194, 242, 237, 0.9)"
+        borderWidth={1}
+        isBackground={true}
+        opacity={0.15}
+      />
+      <form
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        id="form"
+        class="relative z-10"
+      >
+        <input
+          type="hidden"
+          name="access_key"
+          value="f804dc7a-d78a-426e-8e51-a0264667e7bc"
+        />
+        <input
+          type="hidden"
+          name="subject"
+          value="New Submission from Web3Forms"
+        />
+        <input type="checkbox" name="botcheck" id="" style="display: none;" />
+        <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
+
+        <script>
+          const form = document.getElementById('form') as HTMLFormElement | null;
+          if (form) {
+            form.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                  method: 'POST',
+                  body: formData
+                });
+                const data = await response.json();
+                if (data.success) {
+                  alert('Thank you for your submission! We will contact you soon.');
+                  form.reset();
+                } else {
+                  throw new Error('Form submission failed');
+                }
+              } catch (error) {
+                alert('There was an error submitting your form. Please try again.');
+              }
+            });
+          }
+        </script>
+
+        
+        <div class="mb-6">
+          <label for="name" class="block mb-2 text-sm">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="John Doe"
+            required
+            class="w-full px-3 py-2 border border-slate-600 rounded-xs focus:outline-none focus:shadow-[0_0_10px_rgba(34,211,238,0.3)] focus:border-pale-turquoise text-pale-aqua"
+          />
+        </div>
+        <div class="mb-6">
+          <label for="email" class="block mb-2 text-sm">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="you@company.com"
+            required
+            class="w-full px-3 py-2 border border-slate-600 rounded-xs focus:outline-none focus:shadow-[0_0_10px_rgba(34,211,238,0.3)] focus:border-pale-turquoise text-pale-aqua"
+          />
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="block mb-2 text-sm">Project Brief</label>
+
+          <textarea
+            rows="5"
+            name="message"
+            id="message"
+            placeholder="Tell us about your startup, current challenges, and what you're looking to achieve..."
+            class="w-full px-3 py-2 border border-slate-600 rounded-xs focus:outline-none focus:shadow-[0_0_10px_rgba(34,211,238,0.3)] focus:border-pale-turquoise text-pale-aqua"
+            required></textarea>
+        </div>
+        <div id="submitBtn" class="mb-6 text-center">
+          <button
+            type="submit"
+            class="w-xs px-2 py-3 text-[#0D1117] font-semibold bg-cornflower-blue rounded-xs focus:outline-none"
+          >
+            Book Consultation
+          </button>
+        </div>
+        <!-- <div class="h-captcha" data-captcha="true"></div> -->
+        <p class="text-base text-center text-[#0D1117]" id="result"></p>
+      </form>
+    </div>
+  </div>
 </section>
+
+<script src="https://web3forms.com/client/script.js" async defer></script>

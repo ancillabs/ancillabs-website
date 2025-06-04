@@ -1,0 +1,47 @@
+---
+// src/components/FloatButton.astro
+import Magnet from "./Magnet";
+---
+
+<div class="fixed bottom-8 right-8 z-50">
+  <Magnet
+    client:load
+    padding={200}
+    disabled={false}
+    magnetStrength={5}
+    wrapperClassName="relative z-50"
+    innerClassName="relative"
+    onMouseEnter={() => console.log('Floating button mouse enter')}
+    onMouseMove={(e) => console.log('Floating button mouse move', e.clientX, e.clientY)}
+  >
+    <div id="floating-btn" class="hidden transition-opacity duration-300">
+      <a
+        href="#contact"
+        class="bg-cornflower-blue text-[#0D1117] px-6 py-3 rounded-xs font-semibold hover:shadow-[0_0px_12px_rgba(194,242,237,0.4)]"
+      >
+        Book Consultation
+      </a>
+    </div>
+  </Magnet>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const nav = document.querySelector("nav");
+      const floatingBtn = document.getElementById("floating-btn");
+
+      if (!nav || !floatingBtn) return;
+
+      const handleScroll = () => {
+        const navRect = nav.getBoundingClientRect();
+        const contactSubmitBtn = document.getElementById("submitBtn");
+        const contactRect = contactSubmitBtn?.getBoundingClientRect();
+        
+        const shouldHide = !(navRect.bottom < 0) ||
+                         (contactRect && contactRect.top < window.innerHeight);
+        floatingBtn.classList.toggle("hidden", shouldHide);
+      };
+
+      window.addEventListener("scroll", handleScroll);
+    });
+  </script>
+</div>
