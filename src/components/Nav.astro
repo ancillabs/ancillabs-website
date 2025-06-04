@@ -2,25 +2,111 @@
 // src/components/Nav.astro
 ---
 
-<nav class="w-full py-6 px-8 flex justify-between items-center">
+<nav class="w-full py-6 px-8 flex justify-between items-center relative">
   <div class="text-3xl text-pale-turquoise font-[Industry]">ANCILLABS</div>
-  <ul class="flex gap-6">
-    <li><a href="#home" class="hover:text-cornflower-blue">Home</a></li>
-    <li>
-      <a href="#challenges-and-approach" class="hover:text-cornflower-blue">Challenges</a>
-    </li>
-    <li>
-      <a href="#solutions" class="hover:text-cornflower-blue">Solutions</a>
-    </li>
-    <li><a href="#contact" class="hover:text-cornflower-blue">Contact</a></li>
-  </ul>
-  <a
-    href="#contact"
-    class="bg-cornflower-blue text-[#0D1117] px-6 py-2 rounded-xs font-semibold hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(194,242,237,0.4)] transition-all duration-300"
-    
+
+  <!-- Hamburger Button - visible on mobile, hidden on md and up -->
+  <button
+    id="menu-toggle"
+    class="md:hidden text-pale-turquoise hover:text-cornflower-blue focus:outline-none focus:ring-2 focus:ring-pale-turquoise rounded"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
   >
-    Book Consultation
-  </a>
+    <svg
+      id="menu-icon-open"
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16m-7 6h7"></path>
+    </svg>
+    <svg
+      id="menu-icon-close"
+      class="w-6 h-6 hidden"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+
+  <!-- Navigation Links and Book Consultation Button Container -->
+  <!-- Hidden on mobile by default, shown as flex on md and up -->
+  <!-- When mobile menu is open, it becomes block -->
+  <div
+    id="mobile-menu"
+    class="hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 md:gap-6 absolute md:static top-full left-0 w-full md:w-auto bg-[#0D1117] md:bg-transparent shadow-lg md:shadow-none p-4 md:p-0 mt-2 md:mt-0 rounded-md md:rounded-none transition-all duration-300 ease-in-out z-50"
+  >
+    <ul class="flex flex-col md:flex-row items-end gap-4 md:gap-6 w-full md:w-auto">
+      <li>
+        <a href="#home" class="block py-2 md:py-0 hover:text-cornflower-blue">Home</a>
+      </li>
+      <li>
+        <a href="#challenges-and-approach" class="block py-2 md:py-0 hover:text-cornflower-blue"
+          >Challenges</a
+        >
+      </li>
+      <li>
+        <a href="#solutions" class="block py-2 md:py-0 hover:text-cornflower-blue">Solutions</a>
+      </li>
+      <li>
+        <a href="#contact" class="block py-2 md:py-0 hover:text-cornflower-blue">Contact</a>
+      </li>
+    </ul>
+    <div class="flex flex-col items-ends">
+    <a
+      href="#contact"
+      class="bg-cornflower-blue text-[#0D1117] px-6 py-2 rounded-xs font-semibold hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(194,242,237,0.4)] md:w-auto text-center mt-4 md:mt-0"
+    >
+      Book Consultation
+    </a>
+    </div>
+  </div>
 </nav>
 
-    <!-- class="bg-gradient-to-r from-pale-turquoise to-cornflower-blue text-[#0D1117] px-6 py-2 rounded-xs font-semibold hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(194,242,237,0.4)] transition-all duration-300" -->
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+
+  if (menuToggle && mobileMenu && menuIconOpen && menuIconClose) {
+    menuToggle.addEventListener('click', () => {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+      
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('block'); // Or 'flex' if you prefer flex for the mobile menu container
+
+      menuIconOpen.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+
+      // Optional: Close menu when a link inside is clicked
+      // This is useful for single-page applications with hash links
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 768) { // md breakpoint in Tailwind
+            menuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('block');
+            menuIconOpen.classList.remove('hidden');
+            menuIconClose.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+</script>
