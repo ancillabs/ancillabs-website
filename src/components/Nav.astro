@@ -50,78 +50,179 @@
     id="mobile-menu"
     class="hidden md:flex flex-col md:flex-row items-end md:items-center gap-4 md:gap-6 absolute md:static top-full left-0 w-full md:w-auto bg-[#0D1117] md:bg-transparent shadow-lg md:shadow-none p-4 md:p-0 mt-2 md:mt-0 rounded-md md:rounded-none transition-all duration-300 ease-in-out z-50"
   >
-    <ul class="flex flex-col md:flex-row items-end gap-4 md:gap-6 w-full md:w-auto">
+    <ul
+      class="flex flex-col md:flex-row items-end gap-4 md:gap-6 w-full md:w-auto"
+    >
       <li>
-        <a href="#home" class="block py-2 md:py-0 hover:text-cornflower-blue">Home</a>
-      </li>
-      <li>
-        <a href="#challenges-and-approach" class="block py-2 md:py-0 hover:text-cornflower-blue"
-          >Challenges</a
+        <a href="/" class="block py-2 md:py-0 hover:text-cornflower-blue"
+          >Home</a
         >
       </li>
-      <li>
-        <a href="#solutions" class="block py-2 md:py-0 hover:text-cornflower-blue">Solutions</a>
+      <li class="relative group" id="services-menu-item">
+        <button
+          id="services-toggle"
+          class="flex items-center gap-2 py-2 md:py-0 hover:text-cornflower-blue focus:outline-none w-full justify-end"
+          aria-expanded="false"
+          aria-controls="services-dropdown"
+        >
+          Services
+          <svg
+            class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path></svg
+          >
+        </button>
+        <div
+          class="hidden group-hover:md:block absolute top-full h-3 w-full z-10"
+        >
+        </div>
+
+        <div
+          id="services-dropdown"
+          class="hidden group-hover:block md:absolute mt-3 top-full left-1/2 md:-translate-x-1/2 w-full md:w-56 rounded-xs shadow-lg z-20"
+        >
+          <a
+            href="/"
+            class="block px-4 py-2 text-sm hover:bg-[#0D1117] hover:text-cornflower-blue text-right md:text-left"
+            >AI & Automation</a
+          >
+          <a
+            href="/development"
+            class="block px-4 py-2 text-sm hover:bg-transparent hover:text-cornflower-blue text-right md:text-left"
+            >MVP & Infrastructure</a
+          >
+        </div>
       </li>
       <li>
-        <a href="#contact" class="block py-2 md:py-0 hover:text-cornflower-blue">Contact</a>
+        <a href="#contact" class="block py-2 md:py-0 hover:text-cornflower-blue"
+          >Contact</a
+        >
       </li>
     </ul>
     <div class="flex flex-col items-ends">
-    <a
-      href="#contact"
-      class="bg-cornflower-blue text-[#0D1117] px-6 py-2 rounded-xs font-semibold hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(194,242,237,0.4)] md:w-auto text-center mt-4 md:mt-0"
-    >
-      Book Consultation
-    </a>
+      <a
+        href="#contact"
+        class="bg-cornflower-blue text-[#0D1117] px-6 py-2 rounded-xs font-semibold hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(194,242,237,0.4)] md:w-auto text-center mt-4 md:mt-0"
+      >
+        Book Consultation
+      </a>
     </div>
   </div>
 </nav>
 
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuIconOpen = document.getElementById('menu-icon-open');
-  const menuIconClose = document.getElementById('menu-icon-close');
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIconOpen = document.getElementById("menu-icon-open");
+  const menuIconClose = document.getElementById("menu-icon-close");
 
-  if (menuToggle && mobileMenu && menuIconOpen && menuIconClose) {
-    const closeMenu = () => {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      mobileMenu.classList.add('hidden');
-      mobileMenu.classList.remove('block');
-      menuIconOpen.classList.remove('hidden');
-      menuIconClose.classList.add('hidden');
-    };
+  const servicesToggle = document.getElementById("services-toggle");
+  const servicesDropdown = document.getElementById("services-dropdown");
+  const servicesMenuItem = document.getElementById("services-menu-item");
 
-    const handleDocumentClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const isMenuOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-      const isClickInside = menuToggle.contains(target) || mobileMenu.contains(target);
-      
-      if (isMenuOpen && !isClickInside) {
-        closeMenu();
-      }
-    };
+  const closeServicesMenu = () => {
+    if (servicesDropdown && servicesToggle) {
+      servicesDropdown.classList.add("hidden");
+      servicesDropdown.classList.remove("block"); // ensure block is removed
+      servicesToggle.setAttribute("aria-expanded", "false");
+    }
+  };
 
+  const closeMainMenu = () => {
+    if (mobileMenu && menuToggle && menuIconOpen && menuIconClose) {
+      menuToggle.setAttribute("aria-expanded", "false");
+      mobileMenu.classList.add("hidden");
+      mobileMenu.classList.remove("block"); // ensure block is removed
+      menuIconOpen.classList.remove("hidden");
+      menuIconClose.classList.add("hidden");
+      closeServicesMenu(); // Also close services dropdown when main menu closes
+    }
+  };
+
+  if (
+    menuToggle &&
+    mobileMenu &&
+    servicesToggle &&
+    servicesDropdown &&
+    servicesMenuItem
+  ) {
+    // --- Event Handlers ---
+
+    // Toggles the main hamburger menu
     const handleMenuToggle = (event: MouseEvent) => {
       event.stopPropagation();
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-      mobileMenu.classList.toggle('hidden');
-      mobileMenu.classList.toggle('block');
-      menuIconOpen.classList.toggle('hidden');
-      menuIconClose.classList.toggle('hidden');
-    };
-
-    const handleLinkClick = () => {
-      if (window.innerWidth < 768) {
-        closeMenu();
+      const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+      if (isExpanded) {
+        closeMainMenu();
+      } else {
+        menuToggle?.setAttribute("aria-expanded", "true");
+        mobileMenu?.classList.remove("hidden");
+        mobileMenu?.classList.add("block");
+        menuIconOpen?.classList.add("hidden");
+        menuIconClose?.classList.remove("hidden");
       }
     };
 
-    document.addEventListener('click', handleDocumentClick);
-    menuToggle.addEventListener('click', handleMenuToggle);
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', handleLinkClick);
+    // Toggles the services dropdown (primarily for mobile)
+    const handleServicesToggle = (event: MouseEvent) => {
+      // On mobile, a click on the toggle button should not propagate to the document click listener
+      event.stopPropagation();
+      const isExpanded =
+        servicesToggle.getAttribute("aria-expanded") === "true";
+      if (isExpanded) {
+        closeServicesMenu();
+      } else {
+        servicesToggle.setAttribute("aria-expanded", "true");
+        servicesDropdown.classList.remove("hidden");
+        servicesDropdown.classList.add("block");
+      }
+    };
+
+    // Closes menus when a navigation link is clicked
+    const handleLinkClick = () => {
+      if (window.innerWidth < 768) {
+        // Only on mobile
+        closeMainMenu();
+      }
+      // Always close services dropdown if it was open
+      closeServicesMenu();
+    };
+
+    // Closes menus if a click occurs outside of them
+    const handleDocumentClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      // Close main menu if click is outside
+      if (!menuToggle.contains(target) && !mobileMenu.contains(target)) {
+        if (menuToggle.getAttribute("aria-expanded") === "true") {
+          closeMainMenu();
+        }
+      }
+
+      // Close services dropdown if click is outside
+      // Note: This logic is for desktop where the main menu might not be open
+      if (!servicesMenuItem.contains(target)) {
+        if (servicesToggle.getAttribute("aria-expanded") === "true") {
+          closeServicesMenu();
+        }
+      }
+    };
+
+    // --- Attach Event Listeners ---
+    menuToggle.addEventListener("click", handleMenuToggle);
+    servicesToggle.addEventListener("click", handleServicesToggle);
+    document.addEventListener("click", handleDocumentClick);
+
+    // Add listeners to all links to close menus on navigation
+    document.querySelectorAll("nav a").forEach((link) => {
+      link.addEventListener("click", handleLinkClick);
     });
   }
 </script>
